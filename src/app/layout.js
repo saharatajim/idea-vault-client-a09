@@ -1,5 +1,8 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider"
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/Footer";
 
 const robotoSans = Roboto({
   variable: "--font-robot-sans",
@@ -15,10 +18,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang="en"
+      lang="en" 
       className={`${robotoSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+            <Footer/>
+          </ThemeProvider>
+      </body>
     </html>
   );
 }
