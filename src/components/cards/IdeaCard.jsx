@@ -36,7 +36,7 @@ export default function IdeaCard() {
         </div>
 
         <Link
-          href="/ideas/studymate-ai"
+          href="/ideas/details"
           className="block w-full text-center bg-blue-500 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition"
         >
           View Details

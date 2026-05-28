@@ -1,3 +1,4 @@
+
 import Banner from '@/components/Homepage/banner/Banner';
 import Methodology from '@/components/Homepage/banner/Methodology';
 import Stats from '@/components/Homepage/banner/Stats';
@@ -13,6 +14,7 @@ const Homepage = () => {
       <TrendingIdeas/>
       <Stats/>
       <Methodology/>
+     
       
     </div>
   );
