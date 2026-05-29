@@ -9,7 +9,7 @@ const MynavLink = ({href,children}) => {
 
     return (
         <div>
-            <Link className={`${isActive ? 'text-blue-400': 'text-white '} hover:border-b hover:cursor-pointer` }href={href}>{children}</Link>
+            <Link className={`${isActive ? 'text-cyan-400': ' text-blue-300 '} hover:border-b hover:cursor-pointer` }href={href}>{children}</Link>
             
         </div>
     );
