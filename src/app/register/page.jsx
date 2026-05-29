@@ -3,8 +3,12 @@
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 
 export default function RegisterPage() {
+      const router = useRouter();
   const handleRegister=async(e)=>{
       e.preventDefault();
       const formData = new FormData(e.currentTarget)
@@ -13,6 +17,17 @@ export default function RegisterPage() {
       const { data, error }=await authClient.signUp.email({
         name,email,password,image
       })
+                if(data){
+                toast.success("your  registration completed")
+                setTimeout(()=>{
+                  router.push("/")
+                },500)
+          
+              }
+              if(error){
+                 toast("your  registration failed")
+              }
+        
       console.log({data, error });
 
   }

@@ -8,6 +8,14 @@ import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
     const router = useRouter();
+
+    const GoogleSignIn = async () => {
+  await authClient.signIn.social({
+    provider: "google",
+  });
+  toast.success("Sign In successfully completed")
+};
+
     const handleSignin=async(e)=>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
@@ -54,6 +62,7 @@ export default function SignInPage() {
                 Password
               </label>
               <input
+                
               name="password"
                 id="password"
                 type="password"
@@ -72,6 +81,8 @@ export default function SignInPage() {
           {/* Google Sign-In Button */}
           <div className="mt-6">
             <button
+
+            onClick={GoogleSignIn}
               className="w-full flex items-center justify-center gap-2 px-4 py-2 border rounded-md bg-white text-gray-700 hover:bg-gray-50 transition"
             >
               <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">

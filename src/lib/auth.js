@@ -9,9 +9,16 @@ const client = new MongoClient(process.env.DB_URI);
 const db = client.db("idea-vault");
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db, {client
+   baseURL: process.env.BETTER_AUTH_URL, 
+   database: mongodbAdapter(db, {client
   }),
    emailAndPassword: { 
     enabled: true, 
-  }
+  },
+  socialProviders: {
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID , 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+        }, 
+    },
 });
