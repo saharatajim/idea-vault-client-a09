@@ -9,14 +9,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
-export function SignInDropdown({user,setUser}) {
+export function SignInDropdown({session}) {
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger >
         <div className=" rounded-2xl  flex items-center gap-5"> 
               <Avatar className="scale-90">
-        <Avatar.Image  alt="John Doe" src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3" />
+        <Avatar.Image  alt="John Doe" src={session?.user?.image}/>
         <Avatar.Fallback>JD</Avatar.Fallback>
       </Avatar> </div>
       </DropdownMenuTrigger>
@@ -30,7 +33,11 @@ export function SignInDropdown({user,setUser}) {
     
           <DropdownMenuItem >
            <div>
-             <button onClick={()=>setUser(!user)}> Log out</button>
+
+             <button onClick={async()=>{await authClient.signOut();
+              toast("sign out successfully completed")
+             }}>  <Link href={'/'}> Log out</Link></button>
+           
            </div>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>

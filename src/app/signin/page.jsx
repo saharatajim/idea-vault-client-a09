@@ -2,8 +2,33 @@
 
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
+    const router = useRouter();
+    const handleSignin=async(e)=>{
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget)
+        const {email,password} = Object.fromEntries(formData.entries());
+        console.log(email,password);
+         const { data, error }=await authClient.signIn.email({
+         email,password
+         })
+         console.log({data, error });
+          if(data){
+          toast.success("your  signin completed")
+          setTimeout(()=>{
+            router.push("/")
+          },500)
+    
+        }
+        if(error){
+           toast("your  signin failed")
+        }
+  
+    }
   return (
     <div className="flex items-center justify-center min-h-screen bg-muted/20">
       <Card className="w-[350px] shadow-md">
@@ -11,12 +36,13 @@ export default function SignInPage() {
           <CardTitle className="text-center">Sign In</CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
+          <form onSubmit={handleSignin} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
+              name="email"
                 id="email"
                 type="email"
                 placeholder="you@example.com"
@@ -28,6 +54,7 @@ export default function SignInPage() {
                 Password
               </label>
               <input
+              name="password"
                 id="password"
                 type="password"
                 placeholder="••••••••"
