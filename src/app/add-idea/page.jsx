@@ -1,20 +1,41 @@
 "use client"
 
+ import { addIdeas } from '@/lib/action';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const AddIdea = () => {
+  const router=useRouter()
+const { data: session } = authClient.useSession();
 
-     const onSubmit = async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const destination = Object.fromEntries(formData.entries())
-        console.log(destination);
-     }
-    return (
-   <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <form 
-       onSubmit={onSubmit}
-      className="w-[600px] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md space-y-6">
+const user=session?.user
+console.log(user)
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const ideas = Object.fromEntries(formData.entries())
+    console.log(ideas)
+
+ const modifieddata = {
+      ...ideas,
+       userId:user?.id ,
+        userName:user?.name ,
+        userImage:user?.image
+      
+    }
+
+   console.log(modifieddata);
+          addIdeas(modifieddata)
+          router.push("/ideas")
+
+
+  }
+  return (
+    <div className="container mx-auto flex py-10 items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <form
+        onSubmit={onSubmit}
+        className="w-[600px] bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md space-y-6">
         <h2 className="text-2xl font-semibold text-center text-blue-600 dark:text-blue-400">
           Introduce a Startup Proposal
         </h2>
@@ -231,7 +252,7 @@ const AddIdea = () => {
         </div>
       </form>
     </div>
-    );
+  );
 };
 
 export default AddIdea;

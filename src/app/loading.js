@@ -1,4 +1,11 @@
 export default function Loading() {
-  // Or a custom loading skeleton component
-  return <p>Loading...</p>
+  return (
+    <div className="flex h-screen items-center justify-center bg-gray-50">
+      <div className="flex space-x-2">
+        <div className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+        <div className="w-4 h-4 bg-blue-500 rounded-full animate-bounce delay-150"></div>
+        <div className="w-4 h-4 bg-blue-500 rounded-full animate-bounce delay-300"></div>
+      </div>
+    </div>
+  );
 }
