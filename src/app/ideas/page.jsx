@@ -50,16 +50,16 @@ const IdeasPage = async() => {
   <NativeSelectOption value="pineapple">Pineapple</NativeSelectOption>
      </NativeSelect>
 </div>
-                      </div>
-                      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                         {
-                          allIdeas.map((idea,index)=>
-                          <IdeaCard key={index} idea={idea}/>)
-                        } 
-                    
-                     
-                      </div>
-                   </div>
+          </div>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
+             {
+              allIdeas.map((idea,index)=>
+              <IdeaCard key={index} idea={idea}/>)
+            } 
+        
+         
+          </div>
+       </div>
         </div>
     );
 };
