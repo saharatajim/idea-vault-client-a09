@@ -23,3 +23,9 @@
          const ideas=await res.json()
          return ideas
    }
+//get only selected idea data details on client server
+   export const selectedIdea= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`)
+    const SelectedIdea=await res.json()
+    return SelectedIdea
+   }
