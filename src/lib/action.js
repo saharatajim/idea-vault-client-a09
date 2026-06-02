@@ -15,6 +15,7 @@
          export const getIdeas=async()=>{
          const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`)
          const ideas=await res.json()
+       
          return ideas
    }
 //get all trending idea data on client server
@@ -34,4 +35,17 @@
          const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`)
          const myIdea=await res.json()
          return myIdea
-   }  
+   } 
+   
+   //delete  ideas 
+    export const deleteMyIdea= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,{
+        method:"DELETE",
+         headers: {
+        'content-type': 'application/json'
+      },
+      
+      })
+    const deleteIdea=await res.json()
+    return deleteIdea
+   }

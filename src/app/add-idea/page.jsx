@@ -28,6 +28,7 @@ console.log(user)
    console.log(modifieddata);
           addIdeas(modifieddata)
           router.push("/ideas")
+          
 
 
   }

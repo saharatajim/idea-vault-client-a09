@@ -11,6 +11,7 @@ import { getIdeas } from '@/lib/action';
 const IdeasPage = async() => {
     
     const allIdeas=await getIdeas()
+    
     console.log(allIdeas)
     return (
         <div className='container mx-auto'>
