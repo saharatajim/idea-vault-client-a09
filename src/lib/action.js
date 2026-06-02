@@ -24,8 +24,14 @@
          return ideas
    }
 //get only selected idea data details on client server
-   export const selectedIdea= async(id)=>{
-      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`)
-    const SelectedIdea=await res.json()
-    return SelectedIdea
+         export const selectedIdea= async(id)=>{
+          const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`)
+         const SelectedIdea=await res.json()
+         return SelectedIdea
    }
+ //get user based all my idea data  
+         export const getMyIdea= async(id)=>{
+         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`)
+         const myIdea=await res.json()
+         return myIdea
+   }  
