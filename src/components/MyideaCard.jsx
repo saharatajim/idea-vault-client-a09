@@ -1,8 +1,8 @@
 
 import Image from "next/image";
 import { IdeaDeleteAlert } from "./IdeaDeleteAlert";
-// import { IdeaDeleteAlert } from "./IdeaDeleteAlert";
-// import { UpdateModal } from "./UpdateModal";
+
+import { UpdateModal } from "./UpdateModal";
 
 
 const MyideaCard=async ({IdeaCard})=>{
@@ -15,7 +15,7 @@ console.log(_id)
           {/* Image */}
           <div className="md:w-1/3 w-full h-64 relative">
             <Image
-              src={IdeaCard.imageUrl}
+              src={IdeaCard?.imageUrl}
               alt={IdeaCard.title}
               fill
               className="object-cover"
@@ -39,9 +39,9 @@ console.log(_id)
             {/* Buttons */}
             <div className="flex gap-4 mt-4">
                  <IdeaDeleteAlert userId={_id}/>
-{/*            
-             <UpdateModal IdeaCard={IdeaCard} />
-              */}
+           
+             <UpdateModal userId={_id} />
+             
             </div>
           </div>
         </div>

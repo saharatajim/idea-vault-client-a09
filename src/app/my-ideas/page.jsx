@@ -21,7 +21,7 @@ console.log(myIdeas)
  <div className="container mx-auto p-6 space-y-8">
       <h1 className="text-3xl font-bold text-blue-500 mb-6">My Ideas</h1>
  {myIdeas.length === 0 ? (
-        // Empty UI
+        
         <div className="flex flex-col items-center justify-center bg-blue-50 dark:bg-gray-800 rounded-lg shadow-md p-10 border border-cyan-300">
           <svg
             className="w-16 h-16 text-blue-400 mb-4"

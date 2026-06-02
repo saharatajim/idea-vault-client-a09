@@ -18,7 +18,9 @@ export function IdeaDeleteAlert({userId}) {
     const handleDeleteCard=async()=>{
         toast("idea deleted")
         await deleteMyIdea(userId)
-          window.location.reload()
+          setTimeout(() => {
+    window.location.reload();
+  }, 2000);
     }
   return (
     <AlertDialog>

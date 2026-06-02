@@ -4,6 +4,7 @@
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddIdea = () => {
   const router=useRouter()
@@ -27,9 +28,9 @@ console.log(user)
 
    console.log(modifieddata);
           addIdeas(modifieddata)
-          router.push("/ideas")
+          router.push("/my-ideas")
           
-
+toast.success("Idea added successfully")
 
   }
   return (
