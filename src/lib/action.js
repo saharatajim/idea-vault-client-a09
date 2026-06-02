@@ -97,3 +97,16 @@
     const deleteData=await res.json()
     return deleteData
    }
+   //update comments
+      export const updateMyComment= async(id,data)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,{
+        method:"PATCH",
+         headers: {
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(data)
+      
+      })
+    const updateIdea=await res.json()
+    return updateIdea
+   }

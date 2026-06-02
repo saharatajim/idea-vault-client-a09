@@ -1,7 +1,7 @@
 "use client"
 
 
-import { deleteComment } from "@/lib/action"
+import { deleteComment, updateMyComment } from "@/lib/action"
 import { toast } from "react-toastify"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 
@@ -14,14 +14,17 @@ const handleDelete=async(id)=>{
 }, 2000);
 toast("comment deleted")
 }
-// const onSubmit=async(e)=>{
-//      e.preventDefault()
-//     const formData = new FormData(e.currentTarget)
-//     const comment = Object.fromEntries(formData.entries())
-//     console.log(comment)
-//     await updateMyComment(commentId,comment)
-//         window.location.reload();
-// }
+const onSubmit=async(e)=>{
+     e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const comment = Object.fromEntries(formData.entries())
+    console.log(comment)
+    await updateMyComment(commentId,comment)
+         setTimeout(() => {
+  window.location.reload();
+}, 2000);
+toast("comment updated")
+}
     return(
 
             <div className="flex gap-3 mt-2 text-sm">
@@ -33,7 +36,8 @@ toast("comment deleted")
           <div className="btn text-blue-600 hover:underline">Edit</div>
         </DialogTrigger>
         <DialogContent>
-          <form >
+          <form 
+          onSubmit={onSubmit}>
             <div className="mt-4">
             <textarea
               name="comment"
@@ -41,7 +45,7 @@ toast("comment deleted")
               className="w-full border px-3 py-2 rounded"
             />
           </div>
-          <button type="submit" className="btn">Save</button>
+          <button  type="submit" className="btn">Save</button>
           </form>
         </DialogContent>
       </Dialog>
