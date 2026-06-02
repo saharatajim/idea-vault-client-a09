@@ -8,8 +8,7 @@ const IdeaDetailsPage = async({params}) => {
   const{id}=await params
  
   const SelectedIdea=await selectedIdea(id)
-  console.log(SelectedIdea);
-
+ 
   return (
        <div className="container mx-auto p-6 space-y-6 bg-blue-50 rounded-lg shadow">
       {/* Title & Subtitle */}

@@ -1,6 +1,7 @@
 "use client"
 
 import { postComments } from "@/lib/action";
+import { toast } from "react-toastify";
 
 const AddComments=({user,selectedIdeaById})=>{
    
@@ -17,7 +18,10 @@ const AddComments=({user,selectedIdeaById})=>{
   newDate: new Date().toISOString()   
 }
      await postComments(modifiedCommentsdata)
-     window.location.reload()
+   setTimeout(() => {
+  window.location.reload();
+}, 1000);
+toast.success("commented")
   }
     return(
  <form onSubmit={onSubmit} className="flex gap-2 mb-4">

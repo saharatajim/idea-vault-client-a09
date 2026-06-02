@@ -1,9 +1,9 @@
-
 import Image from "next/image"
-import AddComments from "./AddComments";
+
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-
+import { getComments } from "@/lib/action";
+import AddComments from "./AddComments";
 // import CommentAction from "./CommentAction";
 
  const CommentSection= async({SelectedIdea})=> {
@@ -15,8 +15,7 @@ const session = await auth.api.getSession({
  const user=session?.user 
  const selectedIdeaById=SelectedIdea?._id
  
-//  const allCommnets=await getComments(selectedIdeaById)
-// console.log(allCommnets)
+ const comments=await getComments(selectedIdeaById)
 
 
   return (
@@ -27,7 +26,45 @@ const session = await auth.api.getSession({
      <AddComments selectedIdeaById={selectedIdeaById} user={user}/>
 
       {/* Example List */}
-    
+      <div className="space-y-3">
+{
+  comments.map((comm,ind)=>
+  {
+
+
+
+  const isoDate = comm.newDate
+const dateObj = new Date(isoDate)
+const options = { day: "2-digit", month: "short", year: "numeric" }
+const formattedDate = dateObj.toLocaleDateString("en-GB", options)
+return(
+   <div key={ind}>
+            <div className="p-3 rounded bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-600">
+          <div className="flex items-center gap-3 mb-2">
+            <Image
+            alt={comm?.userName}
+              src={comm?.userImage}
+              width={32}
+              height={32}
+              className="rounded-full border"
+            />
+            <div>
+              <p className="font-medium">{comm?.userName}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{formattedDate}</p>
+            </div>
+          </div>
+          <p className="text-gray-700 dark:text-gray-300">{comm.comment}</p>
+
+          {/* Actions */}
+      {/* <CommentAction comm={comm}/> */}
+        </div>
+  </div>
+)
+ 
+
+})
+}
+      </div>
     </div>
   )
 }

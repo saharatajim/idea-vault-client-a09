@@ -65,6 +65,8 @@
 
 
    // comment collenction
+
+   //post comment
   export const postComments=async(comments)=>{
    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
       method: "POST",
@@ -76,4 +78,10 @@
     const data = await res.json()
     console.log(data, "dta")
 
+   }
+//get all comments of only selected Details page of idea
+     export const getComments=async(ideaId)=>{
+    const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${ideaId}`)
+    const comments=await res.json()
+    return comments
    }
