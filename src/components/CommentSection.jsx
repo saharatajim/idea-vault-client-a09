@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { getComments } from "@/lib/action";
 import AddComments from "./AddComments";
+import CommentAction from "./CommentAction";
 // import CommentAction from "./CommentAction";
 
  const CommentSection= async({SelectedIdea})=> {
@@ -56,7 +57,7 @@ return(
           <p className="text-gray-700 dark:text-gray-300">{comm.comment}</p>
 
           {/* Actions */}
-      {/* <CommentAction comm={comm}/> */}
+      <CommentAction comm={comm}/>
         </div>
   </div>
 )

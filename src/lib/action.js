@@ -85,3 +85,15 @@
     const comments=await res.json()
     return comments
    }
+  //delete comment 
+   export const deleteComment= async(id)=>{
+      const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/${id}`,{
+        method:"DELETE",
+         headers: {
+        'content-type': 'application/json'
+      },
+      
+      })
+    const deleteData=await res.json()
+    return deleteData
+   }
