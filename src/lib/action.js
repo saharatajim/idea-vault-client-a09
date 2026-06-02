@@ -110,3 +110,9 @@
     const updateIdea=await res.json()
     return updateIdea
    }
+//get user based all my comment data  
+         export const getMyComments= async(id)=>{
+         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/user/${id}`)
+         const myIdea=await res.json()
+         return myIdea
+   } 

@@ -8,13 +8,15 @@ import CommentAction from "./CommentAction";
 // import CommentAction from "./CommentAction";
 
  const CommentSection= async({SelectedIdea})=> {
-  
+
 const session = await auth.api.getSession({
     headers: await headers() 
 })
 
  const user=session?.user 
  const selectedIdeaById=SelectedIdea?._id
+ const selectedIdeaByTitle=SelectedIdea?.title
+ const selectedIdeaByPitch=SelectedIdea?.pitch
  
  const comments=await getComments(selectedIdeaById)
 
@@ -24,7 +26,7 @@ const session = await auth.api.getSession({
       <h2 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Comments</h2>
 
       {/* Input */}
-     <AddComments selectedIdeaById={selectedIdeaById} user={user}/>
+     <AddComments selectedIdeaByTitle={selectedIdeaByTitle} selectedIdeaByPitch={selectedIdeaByPitch} selectedIdeaById={selectedIdeaById} user={user}/>
 
       {/* Example List */}
       <div className="space-y-3">

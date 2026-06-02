@@ -3,7 +3,7 @@
 import { postComments } from "@/lib/action";
 import { toast } from "react-toastify";
 
-const AddComments=({user,selectedIdeaById})=>{
+const AddComments=({user,selectedIdeaById,selectedIdeaByPitch,selectedIdeaByTitle})=>{
    
   const onSubmit =  async(e) => {
     e.preventDefault()
@@ -12,6 +12,8 @@ const AddComments=({user,selectedIdeaById})=>{
   const modifiedCommentsdata = {
   ...comments,
   selectedIdeaById,
+  selectedIdeaByPitch,
+  selectedIdeaByTitle,
   userId:user.id,
   userName:user.name,
   userImage:user.image,
