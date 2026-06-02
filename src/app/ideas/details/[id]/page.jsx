@@ -1,6 +1,6 @@
 
 
-// import CommentSection from "@/components/CommentSection";
+import CommentSection from "@/components/CommentSection";
 import { selectedIdea } from "@/lib/action";
 import Image from "next/image";
 
@@ -8,6 +8,7 @@ const IdeaDetailsPage = async({params}) => {
   const{id}=await params
  
   const SelectedIdea=await selectedIdea(id)
+  console.log(SelectedIdea);
 
   return (
        <div className="container mx-auto p-6 space-y-6 bg-blue-50 rounded-lg shadow">
@@ -81,7 +82,7 @@ const IdeaDetailsPage = async({params}) => {
       </section>
 
       {/* Comments */}
-      {/* <CommentSection SelectedIdea={SelectedIdea}/> */}
+      <CommentSection SelectedIdea={SelectedIdea}/>
     </div>
   );
 };

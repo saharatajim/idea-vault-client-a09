@@ -62,3 +62,18 @@
     const updateIdea=await res.json()
     return updateIdea
    } 
+
+
+   // comment collenction
+  export const postComments=async(comments)=>{
+   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments`, {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(comments)
+    })
+    const data = await res.json()
+    console.log(data, "dta")
+
+   }
