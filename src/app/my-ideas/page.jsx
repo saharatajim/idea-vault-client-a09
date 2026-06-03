@@ -4,6 +4,10 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 
+export const metadata = {
+  title: "IdeaVault – My Ideas",
+  description: "Connect with innovators, builders, and co-founders to grow your startup ideas transparently.",
+};
 
 
 const MyIdeas=async ()=>{

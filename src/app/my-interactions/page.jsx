@@ -3,7 +3,10 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 import React from "react";
-
+export const metadata = {
+  title: "IdeaVault – My interactions",
+  description: "Connect with innovators, builders, and co-founders to grow your startup ideas transparently.",
+};
 const MyComments =async () => {
   const session = await auth.api.getSession({
       headers: await headers() 

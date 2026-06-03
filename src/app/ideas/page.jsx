@@ -1,5 +1,9 @@
 import React from 'react';
 import IdeaFilter from '@/components/IdeaFilter';
+export const metadata = {
+  title: "IdeaVault – All concepts",
+  description: "Connect with innovators, builders, and co-founders to grow your startup ideas transparently.",
+};
 
 const IdeasPage = () => {
     return (

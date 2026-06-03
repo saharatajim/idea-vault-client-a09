@@ -33,7 +33,7 @@ export default function SignInPage() {
     
         }
         if(error){
-           toast("your  signin failed")
+           toast.error("your  signin failed")
         }
   
     }

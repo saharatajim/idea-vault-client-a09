@@ -25,7 +25,7 @@ export default function RegisterPage() {
           
               }
               if(error){
-                 toast("your  registration failed")
+                 toast.error("your  registration failed")
               }
         
       console.log({data, error });

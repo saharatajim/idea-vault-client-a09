@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { toast } from 'react-toastify';
 
+
 const AddIdea = () => {
   const router=useRouter()
 const { data: session } = authClient.useSession();

@@ -12,7 +12,7 @@ const handleDelete=async(id)=>{
     setTimeout(() => {
   window.location.reload();
 }, 2000);
-toast("comment deleted")
+toast.error("comment deleted")
 }
 const onSubmit=async(e)=>{
      e.preventDefault()
@@ -23,14 +23,24 @@ const onSubmit=async(e)=>{
          setTimeout(() => {
   window.location.reload();
 }, 2000);
-toast("comment updated")
+toast.success("comment updated")
 }
     return(
 
             <div className="flex gap-3 mt-2 text-sm">
             
-            
-            <button onClick={()=>handleDelete(commentId)} className=" btn text-red-600 hover:underline">Delete</button>
+            <Dialog>
+        <DialogTrigger>
+          <div className="btn text-blue-600 hover:underline">Delete</div>
+        </DialogTrigger>
+        <DialogContent>
+        <div className=" p-5 space-y-4 border"> 
+           <p className="text-xl"> Are you sure to delete?if yes then continue</p>
+         <button onClick={()=>handleDelete(commentId)} className=" btn text-red-600 hover:underline">Continue</button>
+        </div>
+        </DialogContent>
+      </Dialog>
+          
              <Dialog>
         <DialogTrigger>
           <div className="btn text-blue-600 hover:underline">Edit</div>

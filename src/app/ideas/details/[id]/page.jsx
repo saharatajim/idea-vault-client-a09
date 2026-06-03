@@ -3,7 +3,10 @@
 import CommentSection from "@/components/CommentSection";
 import { selectedIdea } from "@/lib/action";
 import Image from "next/image";
-
+export const metadata = {
+  title: "IdeaVault – Idea details page",
+  description: "Connect with innovators, builders, and co-founders to grow your startup ideas transparently.",
+};
 const IdeaDetailsPage = async({params}) => {
   const{id}=await params
  
