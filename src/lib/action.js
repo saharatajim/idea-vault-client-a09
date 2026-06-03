@@ -12,12 +12,14 @@
         console.log(data, "dta")
    }
 //get all idea data on client server
-         export const getIdeas=async(category=" ")=>{
-          let url=`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`
+         export const getIdeas=async(category="",search="")=>{
+          const params=new URLSearchParams()
+          if(category) params.append("category",category)
+          if(search) params.append("search",search)
 
-         if(category){
-          url=`${url}?category=${category}`
-         }
+            const queryString=params.toString()
+
+          const url=`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas${queryString?`?${queryString}`:""}`
 
          const res=await fetch(url)
          const ideas=await res.json()

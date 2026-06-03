@@ -15,25 +15,44 @@ const IdeaFilter = () => {
     const searchParams=useSearchParams()
     const[ideas,setIdeas]=useState([])
     const[category,setCategory]=useState(searchParams.get("category") || "")
+    const [search,setSearch]=useState(searchParams.get("search") || "")
+
+    const updateURL=(newCategory,newSearch)=>{
+      const params=new URLSearchParams()
+            if(newCategory) params.append("category",newCategory)
+          if(newSearch) params.append("search",newSearch)
+            const queryString=params.toString()
+          router.push(`/ideas${queryString?`?${queryString}`:""}`)
+
+    }
 
     const handleCategory=(e)=>{
         const value=e.target.value
         setCategory(value)
-        if(value){
-            router.push(`/ideas?category=${value}`)
-        }else{
-            router.push("/ideas")
-        }
+       updateURL(value,search)
     }
-    // const[loading,setLoading]=useState(true)
+
+   const handleSearchChange = (e) => {
+  setSearch(e.target.value);
+};
+
+
+const handleSearchClick = async () => {
+  const data = await getIdeas(category, search); 
+  setIdeas(data);
+  updateURL(category, search);
+};
+
+
+ 
     useEffect(()=>{
         const fetchdata=async()=>{
-            // setLoading(true)
-            const data=await getIdeas(category)
-            setIdeas(data)
-            // setLoading(false)
+          const data=await getIdeas(category)
+          setIdeas(data)
         }
-     fetchdata()
+
+     const timer=setTimeout(fetchdata,400)
+     return ()=>clearTimeout(timer)
     },[category])
         
         console.log(ideas)
@@ -41,32 +60,28 @@ const IdeaFilter = () => {
         <div>
            <div className='pb-10 gap-10 space-y-6 '>
 
-   <div className="flex justify-center items-center mt-12">
-      <input
-        type="text"
-        placeholder="Search..."
-        className="px-4 py-2 w-80 
-                   border border-gray-400 
-                   rounded-l-md 
-                   focus:outline-none focus:ring-1 focus:ring-gray-600 
-                   text-gray-700 placeholder-gray-500 
-                   dark:bg-gray-800 dark:text-gray-200 dark:placeholder-gray-400 dark:border-gray-600"
-      />
-      <button
-        type="button"
-        className="px-5 py-2 
-                   bg-gray-700 text-white 
-                   rounded-r-md 
-                   hover:bg-gray-800 transition-colors 
-                   dark:bg-gray-600 dark:hover:bg-gray-500"
-      >
-        Search
-      </button>
-    </div>
+  <div className="flex justify-center items-center mt-12">
+  <input
+    value={search}
+    onChange={handleSearchChange}  
+    type="text"
+    placeholder="Search..."
+    className="px-4 py-2 w-80 border border-gray-400 rounded-l-md"
+  />
+  <button 
+    type="button"
+    onClick={handleSearchClick}  
+    className="px-5 py-2 bg-gray-700 text-white rounded-r-md hover:bg-gray-800 transition-colors"
+  >
+    Search
+  </button>
+</div>
+
+
                      
 <div>
         <NativeSelect value={category} onChange={handleCategory}>  
-  <NativeSelectOption value="">Select a Category</NativeSelectOption>
+  <NativeSelectOption disabled  value="">Select a Category</NativeSelectOption>
   <NativeSelectOption value="">All</NativeSelectOption>
   <NativeSelectOption value="Tech">Tech</NativeSelectOption>
   <NativeSelectOption value="Health">Health</NativeSelectOption>
