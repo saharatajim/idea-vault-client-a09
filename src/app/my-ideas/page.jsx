@@ -57,7 +57,10 @@ const myIdeas=await getMyIdea(userId,token)
         myIdeas.map((IdeaCard, index) => (
           <MyideaCard IdeaCard={IdeaCard} userId={userId} key={index} />
         ))
+        
       )}
+
+
     </div>
   );
 }
