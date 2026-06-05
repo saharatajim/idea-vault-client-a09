@@ -59,7 +59,7 @@ return(
           <p className="text-gray-700 dark:text-gray-300">{comm.comment}</p>
 
           {/* Actions */}
-      <CommentAction comm={comm}/>
+      {/* <CommentAction comm={comm}/> */}
         </div>
   </div>
 )

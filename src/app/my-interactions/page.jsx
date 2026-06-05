@@ -1,5 +1,6 @@
 import DeleteCommentDialog from "@/components/DeleteCommentDialog";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import UpdateCommentDialog from "@/components/UpdateCommentDialog";
 import { deleteComment, getMyComments } from "@/lib/action";
 import { auth } from "@/lib/auth";
 
@@ -77,6 +78,7 @@ const MyComments = async () => {
                   View Details
                 </Link>
                 <DeleteCommentDialog id={item._id}/>
+                <UpdateCommentDialog id={item._id}/>
       
               </div>
             </div>
