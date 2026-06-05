@@ -58,8 +58,6 @@ const myIdeas=await getMyIdea(userId,token)
           <MyideaCard IdeaCard={IdeaCard} userId={userId} key={index} />
         ))
       )}
-
-
     </div>
   );
 }
