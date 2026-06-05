@@ -11,22 +11,16 @@ const MyComments =async () => {
   const session = await auth.api.getSession({
       headers: await headers() 
   })
-  
-  const userId=session?.user.id
-  console.log(userId,"userId");
-  
-  const comments=await getMyComments(userId)
-  
-  console.log(comments,"comments")
+  const {token}=await auth.api.getToken({
+    headers:await headers()
+  })
 
-  const commentsData = [
-    {
-      selectedIdeaByTitle: "AI-Powered Note Taking",
-      comment: "This concept is really useful for students!",
-      newDate: "2026-06-01T10:30:00Z",
-    },
+  const userId=session?.user.id
+
   
-  ];
+  const comments=await getMyComments(userId,token)
+  
+
 
   return (
     <div className="container mx-auto p-6">

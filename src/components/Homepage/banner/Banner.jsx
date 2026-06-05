@@ -29,6 +29,7 @@ const Banner = () => {
              <div className="relative w-full h-125">
     
       <Image
+      loading="eager"
         src={banner}
         alt="IdeaVault Banner"
         fill
@@ -63,6 +64,7 @@ const Banner = () => {
     
       <Image
         src={banner}
+        loading="eager"
         alt="IdeaVault Banner"
         fill
         className="object-cover inset-00"
@@ -96,6 +98,7 @@ const Banner = () => {
     
       <Image
         src={banner}
+        loading="eager"
         alt="IdeaVault Banner"
         fill
         className="object-cover inset-0

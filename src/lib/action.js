@@ -1,10 +1,11 @@
 "use server"
-// post idea action on client server
-        export const addIdeas=async(ideas)=>{
+// post idea action on client server--wil be private
+        export const addIdeas=async(ideas,token)=>{
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`, {
         method: "POST",
         headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+         authorization:`Bearer ${token}`
          },
         body: JSON.stringify(ideas)
          })
@@ -34,15 +35,37 @@
          const ideas=await res.json()
          return ideas
    }
-//get only selected idea data details on client server
-         export const selectedIdea= async(id)=>{
-          const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`)
-         const SelectedIdea=await res.json()
-         return SelectedIdea
-   }
- //get user based all my idea data  
-         export const getMyIdea= async(id)=>{
-         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`)
+//get only selected idea data details on client server-wil be private
+  //        export const selectedIdea= async(id,token)=>{
+  //         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`,{
+  //           headers:{
+  //             authorization:`Bearer ${token}`
+  //           }
+  //         })
+  //        const SelectedIdea=await res.json()
+  //        return SelectedIdea
+  //  }
+  export const selectedIdea = async (id, token) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
+
+  if (res.status === 401 || res.status === 403) {
+    throw new Error("Unauthorized"); // frontend এ catch হবে
+  }
+
+  return res.json();
+};
+
+ //get user based all my idea data  -wil be private
+         export const getMyIdea= async(id,token)=>{
+         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/${id}`,{
+          headers:{
+              authorization:`Bearer ${token}`
+            }
+         })
          const myIdea=await res.json()
          return myIdea
    } 
@@ -120,9 +143,13 @@
     const updateIdea=await res.json()
     return updateIdea
    }
-//get user based all my comment data  
-         export const getMyComments= async(id)=>{
-         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/user/${id}`)
+//get user based all my comment data  -wil be private
+         export const getMyComments= async(id,token)=>{
+         const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/comments/user/${id}`,{
+           headers:{
+              authorization:`Bearer ${token}`
+            }
+         })
          const myIdea=await res.json()
          return myIdea
    } 

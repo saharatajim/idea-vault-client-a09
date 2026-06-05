@@ -7,7 +7,7 @@ import { UpdateModal } from "./UpdateModal";
 
 const MyideaCard=async ({IdeaCard})=>{
     const{_id}=IdeaCard
-console.log(_id)
+
   return(
 
    <div className="w-full bg-white dark:bg-gray-800 rounded-lg shadow-md border border-blue-200 dark:border-gray-700 overflow-hidden">
@@ -15,6 +15,8 @@ console.log(_id)
           {/* Image */}
           <div className="md:w-1/3 w-full h-64 relative">
             <Image
+            loading="eager"
+             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               src={IdeaCard?.imageUrl}
               alt={IdeaCard.title}
               fill

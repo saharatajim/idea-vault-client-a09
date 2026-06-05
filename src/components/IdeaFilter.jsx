@@ -55,7 +55,7 @@ const handleSearchClick = async () => {
      return ()=>clearTimeout(timer)
     },[category])
         
-        console.log(ideas)
+       
     return (
         <div>
            <div className='pb-10 gap-10 space-y-6 '>

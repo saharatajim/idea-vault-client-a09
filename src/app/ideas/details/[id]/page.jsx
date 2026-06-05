@@ -2,6 +2,8 @@
 
 import CommentSection from "@/components/CommentSection";
 import { selectedIdea } from "@/lib/action";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 export const metadata = {
   title: "IdeaVault – Idea details page",
@@ -9,8 +11,12 @@ export const metadata = {
 };
 const IdeaDetailsPage = async({params}) => {
   const{id}=await params
+  const {token}=await auth.api.getToken({
+    headers:await headers()
+  })
+
  
-  const SelectedIdea=await selectedIdea(id)
+  const SelectedIdea=await selectedIdea(id,token)
  
   return (
        <div className="container mx-auto p-6 space-y-6 bg-blue-50 rounded-lg shadow">

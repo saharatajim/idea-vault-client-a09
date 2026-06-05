@@ -8,16 +8,20 @@ import { toast } from 'react-toastify';
 
 
 const AddIdea = () => {
-  const router=useRouter()
+
+  // const router=useRouter()
 const { data: session } = authClient.useSession();
 
 const user=session?.user
-console.log(user)
+
   const onSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const ideas = Object.fromEntries(formData.entries())
-    console.log(ideas)
+      const{data:tokenData}=await authClient.token()
+      const token=tokenData?.token
+      
+  
 
  const modifieddata = {
       ...ideas,
@@ -27,9 +31,9 @@ console.log(user)
       
     }
 
-   console.log(modifieddata);
-          addIdeas(modifieddata)
-          router.push("/my-ideas")
+ 
+          addIdeas(modifieddata,token)
+          // router.push("/my-ideas")
           
 toast.success("Idea added successfully")
 

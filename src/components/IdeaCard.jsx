@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function IdeaCard({idea}) {
-  console.log(idea)
+  
   const {title,category,pitch,imageUrl,budget,audience}=idea
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 hover:-translate-y-1 ">
       <div className="relative">
         <Image
+        loading="eager"
           width={700}
           height={600}
         src={imageUrl}

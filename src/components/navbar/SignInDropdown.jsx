@@ -35,7 +35,7 @@ export function SignInDropdown({session}) {
            <div>
 
              <button onClick={async()=>{await authClient.signOut();
-              toast("sign out successfully completed")
+              toast.error("sign out successfully completed")
              }}>  <Link href={'/'}> Log out</Link></button>
            
            </div>

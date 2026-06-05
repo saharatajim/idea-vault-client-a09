@@ -16,10 +16,14 @@ const session = await auth.api.getSession({
     headers: await headers() 
 })
 
+const {token}=await auth.api.getToken({
+    headers:await headers()
+  })
+  
 const userId=session?.user.id
 
-const myIdeas=await getMyIdea(userId)
-console.log(myIdeas)
+const myIdeas=await getMyIdea(userId,token)
+
   return(
 
  <div className="container mx-auto p-6 space-y-8">
