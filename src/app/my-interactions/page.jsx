@@ -1,5 +1,8 @@
-import { getMyComments } from "@/lib/action";
+import DeleteCommentDialog from "@/components/DeleteCommentDialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { deleteComment, getMyComments } from "@/lib/action";
 import { auth } from "@/lib/auth";
+
 import { headers } from "next/headers";
 import Link from "next/link";
 import React from "react";
@@ -20,6 +23,7 @@ const MyComments = async () => {
 
   const userId = session?.user.id;
   const comments = await getMyComments(userId, token);
+  
 
   return (
     <div className="container mx-auto p-6">
@@ -72,6 +76,8 @@ const MyComments = async () => {
                 >
                   View Details
                 </Link>
+                <DeleteCommentDialog id={item._id}/>
+      
               </div>
             </div>
           ))}

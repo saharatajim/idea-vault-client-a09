@@ -16,7 +16,7 @@ import { toast } from "react-toastify"
 export function IdeaDeleteAlert({userId}) {
  
     const handleDeleteCard=async()=>{
-        toast("idea deleted")
+        toast.error("idea deleted")
         await deleteMyIdea(userId)
           setTimeout(() => {
     window.location.reload();

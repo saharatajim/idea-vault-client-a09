@@ -24,6 +24,7 @@ const userId=session?.user.id
 
 const myIdeas=await getMyIdea(userId,token)
 
+
   return(
 
  <div className="container mx-auto p-6 space-y-8">
