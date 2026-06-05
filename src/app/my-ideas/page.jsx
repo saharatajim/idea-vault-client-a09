@@ -26,8 +26,7 @@ const myIdeas=await getMyIdea(userId,token)
 
 
   return(
-
- <div className="container mx-auto p-6 space-y-8">
+<div className="container mx-auto p-6 space-y-8">
       <h1 className="text-3xl font-bold text-blue-500 mb-6">My Ideas</h1>
  {myIdeas.length === 0 ? (
         
